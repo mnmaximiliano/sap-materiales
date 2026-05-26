@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carga de Materiales para SAP</title>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f0f2f5;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: 20px;
+    }
+
+    @media (max-width: 900px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+
+      .sap-box {
+        position: static !important;
+      }
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    h2, h3 {
+      margin-top: 0;
+      color: #1e3d59;
+      border-bottom: 2px solid #ffc13b;
+      padding-bottom: 8px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    .category-title {
+      background: #1e3d59;
+      color: white;
+      padding: 8px 12px;
+      font-weight: bold;
+      border-radius: 4px;
+      margin: 25px 0 10px 0;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+    }
+
+    .item-row {
+      display: grid;
+      grid-template-columns: 110px 1fr 80px;
+      gap: 10px;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .item-row:hover {
+      background-color: #fcfcfc;
+    }
+
+    .code {
+      font-family: monospace;
+      color: #d32f2f;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .name {
+      font-size: 13px;
+      color: #444;
+    }
+
+    .qty-input {
+      width: 100%;
+      padding: 6px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      text-align: center;
+      font-weight: bold;
+      box-sizing: border-box;
+    }
+
+    .qty-input:focus {
+      border-color: #1e3d59;
+      background: #fffde7;
+      outline: none;
+    }
+
+    .sap-box {
+      background: #e8f5e9;
+      border: 2px dashed #2e7d32;
+      padding: 15px;
+      border-radius: 6px;
+      position: sticky;
+      top: 20px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 350px;
+      font-family: monospace;
+      font-size: 12px;
+      padding: 10px;
+      border: 1px solid #c8e6c9;
+      border-radius: 4px;
+      box-sizing: border-box;
+      background: #fafafa;
+      resize: none;
+    }
+
+    .btn-copy {
+      background: #2e7d32;
+      color: white;
+      border: none;
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: 0.2s;
+    }
+
+    .btn-copy:hover {
+      background: #1b5e20;
+    }
+
+    .btn-whatsapp {
+      background: #25D366;
+    }
+
+    .btn-whatsapp:hover {
+      background: #1ebe5d;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="card">
+    <h2>Solicitud de Materiales e Insumos</h2>
+
+    <div class="form-group">
+      <label for="equipo">NUMERO INTERNO DEL EQUIPO *</label>
+      <input type="text" id="equipo" placeholder="Ej: JLG-1250, BR-800, MAN-02">
+    </div>
+
+    <div id="lista-materiales">
+      <div class="category-title">PINTURAS</div>
+      <div class="item-row">
+        <span class="code">PIN000194</span>
+        <span class="name">(N) AMARILLO EAGER BEAVER - ALT</span>
+        <input type="number" class="qty-input" min="0" data-code="PIN000194" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">PIN000065</span>
+        <span class="name">(N) AZUL GENIE WEG</span>
+        <input type="number" class="qty-input" min="0" data-code="PIN000065" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">PIN000178</span>
+        <span class="name">(N) BARNIZ H5 PIUS SIKKEN 5 LTS - ALT</span>
+        <input type="number" class="qty-input" min="0" data-code="PIN000178" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">PIN000015</span>
+        <span class="name">(N) BEIGE JLG WEG</span>
+        <input type="number" class="qty-input" min="0" data-code="PIN000015" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">PIN000017</span>
+        <span class="name">(N) GRIS GENIE WEG</span>
+        <input type="number" class="qty-input" min="0" data-code="PIN000017" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">PIN000002</span>
+        <span class="name">(N) GRIS SINOBOOM WEG</span>
+        <input type="number" class="qty-input" min="0" data-code="PIN000002" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">PIN000018</span>
+        <span class="name">(N) NARANJO JLG WEG</span>
+        <input type="number" class="qty-input" min="0" data-code="PIN000018" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">PIN000020</span>
+        <span class="name">(N) NEGRO MATTE WEG</span>
+        <input type="number" class="qty-input" min="0" data-code="PIN000020" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">PIN000062</span>
+        <span class="name">(N) NEGRO PU WEG</span>
+        <input type="number" class="qty-input" min="0" data-code="PIN000062" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">PIN000054</span>
+        <span class="name">(N) ROJO AIRO WEG</span>
+        <input type="number" class="qty-input" min="0" data-code="PIN000054" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">PIN000193</span>
+        <span class="name">(N) ROJO EAGER BEAVER - ALT</span>
+        <input type="number" class="qty-input" min="0" data-code="PIN000193" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">PIN000023</span>
+        <span class="name">(N) ROJO FARESIN WEG</span>
+        <input type="number" class="qty-input" min="0" data-code="PIN000023" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">PIN000204</span>
+        <span class="name">(N) ROJO SINOBOOM WEG</span>
+        <input type="number" class="qty-input" min="0" data-code="PIN000204" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">PIN000041</span>
+        <span class="name">(N) SPRAY ALUMINIO</span>
+        <input type="number" class="qty-input" min="0" data-code="PIN000041" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">PIN000003</span>
+        <span class="name">(N) SPRAY ESMALTE GRIS</span>
+        <input type="number" class="qty-input" min="0" data-code="PIN000003" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">PIN000043</span>
+        <span class="name">(N) SPRAY NEGRO BRILLANTE 485 ML</span>
+        <input type="number" class="qty-input" min="0" data-code="PIN000043" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">PIN000044</span>
+        <span class="name">(N) SPRAY NEGRO OPACO 485 ML</span>
+        <input type="number" class="qty-input" min="0" data-code="PIN000044" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">PIN000045</span>
+        <span class="name">(N) SPRAY ROJO MANDARIN</span>
+        <input type="number" class="qty-input" min="0" data-code="PIN000045" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">PIN000005</span>
+        <span class="name">CATALIZADOR PARA PINTURAS</span>
+        <input type="number" class="qty-input" min="0" data-code="PIN000005" placeholder="0">
+      </div>
+
+      <div class="category-title">DISCOS Y LIJAS</div>
+      <div class="item-row">
+        <span class="code">HER000031</span>
+        <span class="name">(N) DISCO LIJA C/RESPALDO P36</span>
+        <input type="number" class="qty-input" min="0" data-code="HER000031" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">HER000130</span>
+        <span class="name">(N) DISCO LIJA C/RESPALDO P60</span>
+        <input type="number" class="qty-input" min="0" data-code="HER000130" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">PIN000187</span>
+        <span class="name">(N) DISCO LIJA C/VELCRO 4/2 N 80 - ALT</span>
+        <input type="number" class="qty-input" min="0" data-code="PIN000187" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">HER000043</span>
+        <span class="name">(N) DISCO LIJA C/VELCRO 6 N 320</span>
+        <input type="number" class="qty-input" min="0" data-code="HER000043" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">HER000294</span>
+        <span class="name">(N) DISCO LIJA C/VELCRO 6 N 240</span>
+        <input type="number" class="qty-input" min="0" data-code="HER000294" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">HER000036</span>
+        <span class="name">(N) DISCO LIJA C/VELCRO 6 N 120</span>
+        <input type="number" class="qty-input" min="0" data-code="HER000036" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">HER000039</span>
+        <span class="name">(N) DISCO LIJA C/VELCRO 6 N 100</span>
+        <input type="number" class="qty-input" min="0" data-code="HER000039" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">HER000037</span>
+        <span class="name">(N) DISCO LIJA C/VELCRO 6 N 150</span>
+        <input type="number" class="qty-input" min="0" data-code="HER000037" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">HER000030</span>
+        <span class="name">(N) DISCO LIJA C/VELCRO 6 N 180</span>
+        <input type="number" class="qty-input" min="0" data-code="HER000030" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">HER000038</span>
+        <span class="name">(N) DISCO LIJA C/VELCRO 6 N 60</span>
+        <input type="number" class="qty-input" min="0" data-code="HER000038" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">HER000287</span>
+        <span class="name">(N) DISCO LIJA C/VELCRO 6 N 80</span>
+        <input type="number" class="qty-input" min="0" data-code="HER000287" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">PIN000163</span>
+        <span class="name">(N) DISCO LIJA C/VELCRO GR 1000</span>
+        <input type="number" class="qty-input" min="0" data-code="PIN000163" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">PIN000161</span>
+        <span class="name">(N) DISCO LIJA C/VELCRO GR 600</span>
+        <input type="number" class="qty-input" min="0" data-code="PIN000161" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">PIN000162</span>
+        <span class="name">(N) DISCO LIJA C/VELCRO GR 800</span>
+        <input type="number" class="qty-input" min="0" data-code="PIN000162" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">HER000172</span>
+        <span class="name">(N) DISCO RESPALDO VELCRO</span>
+        <input type="number" class="qty-input" min="0" data-code="HER000172" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">HER000044</span>
+        <span class="name">(N) DISCO TRASLAPADO 4 1/2 GR 60</span>
+        <input type="number" class="qty-input" min="0" data-code="HER000044" placeholder="0">
+      </div>
+
+      <div class="category-title">MASILLAS</div>
+      <div class="item-row">
+        <span class="code">INS000157</span>
+        <span class="name">(N) CERA DESMOLDANTE HANDSON 3KG</span>
+        <input type="number" class="qty-input" min="0" data-code="INS000157" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">INS000158</span>
+        <span class="name">(N) GELCOAT PRM ISOFTALICO BLANCO</span>
+        <input type="number" class="qty-input" min="0" data-code="INS000158" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">PIN000032</span>
+        <span class="name">(N) MASILLA POL. TITANIUM 1/4 GL</span>
+        <input type="number" class="qty-input" min="0" data-code="PIN000032" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">PIN000177</span>
+        <span class="name">(N) MASILLA POLIESTER STAR LIGHT</span>
+        <input type="number" class="qty-input" min="0" data-code="PIN000177" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">INS000180</span>
+        <span class="name">(N) MASILLA POLISFT PLASTICA - ALT</span>
+        <input type="number" class="qty-input" min="0" data-code="INS000180" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">INS000184</span>
+        <span class="name">(N) RRA SIKKENS - ALT</span>
+        <input type="number" class="qty-input" min="0" data-code="INS000184" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">PIN000205</span>
+        <span class="name">POLIKOR MASILLA FIBRA DE VIDRIO POL</span>
+        <input type="number" class="qty-input" min="0" data-code="PIN000205" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">INS000190</span>
+        <span class="name">(N) SELLADOR URETANO PARABRISAS</span>
+        <input type="number" class="qty-input" min="0" data-code="INS000190" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">INS000177</span>
+        <span class="name">(N) MASILLA MAGIGA 700ML - ALT</span>
+        <input type="number" class="qty-input" min="0" data-code="INS000177" placeholder="0">
+      </div>
+
+      <div class="category-title">STICKERS</div>
+      <div class="item-row">
+        <span class="code">LOGALO0140</span>
+        <span class="name">(N) ALO RENTAL BRAZO 1250 AJP</span>
+        <input type="number" class="qty-input" min="0" data-code="LOGALO0140" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">LOGALO0151</span>
+        <span class="name">(N) ALO RENTAL BRAZO 600 AJ</span>
+        <input type="number" class="qty-input" min="0" data-code="LOGALO0151" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">LOGALO0025</span>
+        <span class="name">(N) ALO SERVICE</span>
+        <input type="number" class="qty-input" min="0" data-code="LOGALO0025" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">LOGALO0146</span>
+        <span class="name">(N) BRAZO ALORENTAL 800AJ</span>
+        <input type="number" class="qty-input" min="0" data-code="LOGALO0146" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">LOGALO0023</span>
+        <span class="name">(N) CARGA MAX 227</span>
+        <input type="number" class="qty-input" min="0" data-code="LOGALO0023" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">ADH000219</span>
+        <span class="name">(N) CINTA REFLECTANTE VERDE LIMON POR METROS</span>
+        <input type="number" class="qty-input" min="0" data-code="ADH000219" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">LOGALO0040</span>
+        <span class="name">(N) CUIDAME</span>
+        <input type="number" class="qty-input" min="0" data-code="LOGALO0040" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">LOGALO0099</span>
+        <span class="name">(N) FLECHA DIRECCION JLG 14x6CM</span>
+        <input type="number" class="qty-input" min="0" data-code="LOGALO0099" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">LOGALO0073</span>
+        <span class="name">(N) FLECHA DIRECCION JLG 30x12cm</span>
+        <input type="number" class="qty-input" min="0" data-code="LOGALO0073" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">LOGALO0042</span>
+        <span class="name">(N) GPS LOG</span>
+        <input type="number" class="qty-input" min="0" data-code="LOGALO0042" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">LOGALO0052</span>
+        <span class="name">(N) LOGO JLG 33x12</span>
+        <input type="number" class="qty-input" min="0" data-code="LOGALO0052" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">LOGALO0056</span>
+        <span class="name">(N) MODELO 1250 AJP</span>
+        <input type="number" class="qty-input" min="0" data-code="LOGALO0056" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">LOGALO0083</span>
+        <span class="name">(N) MODELO 1930ES</span>
+        <input type="number" class="qty-input" min="0" data-code="LOGALO0083" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">LOGALO0109</span>
+        <span class="name">(N) MODELO 1932R</span>
+        <input type="number" class="qty-input" min="0" data-code="LOGALO0109" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">LOGALO0014</span>
+        <span class="name">(N) MODELO 3246ES</span>
+        <input type="number" class="qty-input" min="0" data-code="LOGALO0014" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">LOGALO0100</span>
+        <span class="name">(N) MODELO 450AJ</span>
+        <input type="number" class="qty-input" min="0" data-code="LOGALO0100" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">LOGALO0119</span>
+        <span class="name">(N) MODELO 600AJ</span>
+        <input type="number" class="qty-input" min="0" data-code="LOGALO0119" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">LOGALO0110</span>
+        <span class="name">(N) MODELO 800AJ</span>
+        <input type="number" class="qty-input" min="0" data-code="LOGALO0110" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">LOGALO0081</span>
+        <span class="name">(N) PEDALERA</span>
+        <input type="number" class="qty-input" min="0" data-code="LOGALO0081" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">LOGALO0032</span>
+        <span class="name">(N) PELIGRO APLASTAMIENTO</span>
+        <input type="number" class="qty-input" min="0" data-code="LOGALO0032" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">LOGALO0097</span>
+        <span class="name">(N) PELIGRO COM SUP</span>
+        <input type="number" class="qty-input" min="0" data-code="LOGALO0097" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">LOGALO0034</span>
+        <span class="name">(N) PELIGRO EXPLOSION</span>
+        <input type="number" class="qty-input" min="0" data-code="LOGALO0034" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">LOGALO0021</span>
+        <span class="name">(N) PUBLICIDAD ALORENTAL GRA</span>
+        <input type="number" class="qty-input" min="0" data-code="LOGALO0021" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">LOGALO0020</span>
+        <span class="name">(N) PUBLICIDAD ALORENTAL MED</span>
+        <input type="number" class="qty-input" min="0" data-code="LOGALO0020" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">LOGALO0024</span>
+        <span class="name">(N) RESP CLIENTE</span>
+        <input type="number" class="qty-input" min="0" data-code="LOGALO0024" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">LOGALO0029</span>
+        <span class="name">(N) RIESGO ELECTROCUCION</span>
+        <input type="number" class="qty-input" min="0" data-code="LOGALO0029" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">LOGALO0051</span>
+        <span class="name">(P) LOGO JLG 25x9</span>
+        <input type="number" class="qty-input" min="0" data-code="LOGALO0051" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">LOGALO0336</span>
+        <span class="name">FLECHAS DIRECCION JLG GRANDE</span>
+        <input type="number" class="qty-input" min="0" data-code="LOGALO0336" placeholder="0">
+      </div>
+
+      <div class="category-title">HERRAMIENTAS</div>
+      <div class="item-row">
+        <span class="code">HER000356</span>
+        <span class="name">(N) BROCHA DE 2</span>
+        <input type="number" class="qty-input" min="0" data-code="HER000356" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">ADH000219</span>
+        <span class="name">(N) CINTA REFLECTANTE VERDE LIMON POR METROS (HERR)</span>
+        <input type="number" class="qty-input" min="0" data-code="ADH000219" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">PIN000008</span>
+        <span class="name">(N) COLADOR DE PAPEL</span>
+        <input type="number" class="qty-input" min="0" data-code="PIN000008" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">PIN000024</span>
+        <span class="name">(N) FIBRA DE VIDRIO 1/2 KG</span>
+        <input type="number" class="qty-input" min="0" data-code="PIN000024" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">PIN000203</span>
+        <span class="name">(N) PANO DE LIMPIEZA</span>
+        <input type="number" class="qty-input" min="0" data-code="PIN000203" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">PIN000034</span>
+        <span class="name">(N) PERMACEL ROLLO 1"</span>
+        <input type="number" class="qty-input" min="0" data-code="PIN000034" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">PIN000035</span>
+        <span class="name">(N) PERMACEL ROLLO 2"</span>
+        <input type="number" class="qty-input" min="0" data-code="PIN000035" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">PIN000192</span>
+        <span class="name">(N) PRE FOLDER (4,88X121.92)</span>
+        <input type="number" class="qty-input" min="0" data-code="PIN000192" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">PIN000038</span>
+        <span class="name">(N) ROLLO PAPEL ENVOLVER 570 MM</span>
+        <input type="number" class="qty-input" min="0" data-code="PIN000038" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">PIN000191</span>
+        <span class="name">(N) SCOTCH BRITE 3M GRIS</span>
+        <input type="number" class="qty-input" min="0" data-code="PIN000191" placeholder="0">
+      </div>
+
+      <div class="category-title">DILUYENTES / SOLVENTES</div>
+      <div class="item-row">
+        <span class="code">PIN000004</span>
+        <span class="name">(N) ACELERANTE COBALTO</span>
+        <input type="number" class="qty-input" min="0" data-code="PIN000004" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">MOT000022</span>
+        <span class="name">(N) BENCINA BLANCA GRANEL LT</span>
+        <input type="number" class="qty-input" min="0" data-code="MOT000022" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">PIN000007</span>
+        <span class="name">(N) DILUYENTE POLIURET GRANEL 1 LT</span>
+        <input type="number" class="qty-input" min="0" data-code="PIN000007" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">PIN000183</span>
+        <span class="name">(N) DILUYENTE PU5003 5 LT - ALT</span>
+        <input type="number" class="qty-input" min="0" data-code="PIN000183" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">HER000094</span>
+        <span class="name">(N) LUBRICANTE EN SPRAY</span>
+        <input type="number" class="qty-input" min="0" data-code="HER000094" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">PIN000091</span>
+        <span class="name">(N) REMOVEDOR DE PINTURA</span>
+        <input type="number" class="qty-input" min="0" data-code="PIN000091" placeholder="0">
+      </div>
+      <div class="item-row">
+        <span class="code">PIN000038</span>
+        <span class="name">(N) RESINA ACELERADA</span>
+        <input type="number" class="qty-input" min="0" data-code="PIN000038" placeholder="0">
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="card sap-box">
+      <h3>Salida en Columnas para SAP / Excel</h3>
+
+      <p style="font-size: 12px; margin: 0 0 10px 0; color: #3e2723;">
+        Formato: Codigo [Tab] Cantidad [Tab] Equipo.
+      </p>
+
+      <textarea id="sapOutput" readonly placeholder="Ingresa cantidades en la lista de la izquierda..."></textarea>
+
+      <button class="btn-copy" id="btnCopiar" type="button">Copiar al Portapapeles</button>
+      <button class="btn-copy btn-whatsapp" id="btnWhatsapp" type="button">Enviar a mi WhatsApp</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function actualizarSAP() {
+    var equipo = document.getElementById("equipo").value.replace(/^\s+|\s+$/g, "");
+    var inputs = document.querySelectorAll(".qty-input");
+    var textoSalida = "";
+    var itemsSeleccionados = 0;
+    var i;
+    var cant;
+    var codigo;
+
+    for (i = 0; i < inputs.length; i++) {
+      cant = parseInt(inputs[i].value, 10);
+
+      if (!isNaN(cant) && cant > 0) {
+        codigo = inputs[i].getAttribute("data-code");
+        textoSalida += codigo + "\t" + cant + "\t" + equipo + "\n";
+        itemsSeleccionados++;
+      }
+    }
+
+    document.getElementById("sapOutput").value = itemsSeleccionados === 0 ? "" : textoSalida;
+  }
+
+  function copiarConRespaldo(textarea) {
+    textarea.removeAttribute("readonly");
+    textarea.focus();
+    textarea.select();
+
+    try {
+      document.execCommand("copy");
+      alert("Informacion copiada. Puedes pegarla directamente en Excel o SAP.");
+    } catch (error) {
+      alert("No se pudo copiar automaticamente. Manten presionado el texto y copialo manualmente.");
+    }
+
+    textarea.setAttribute("readonly", "readonly");
+  }
+
+  function copiarAlPortapapeles() {
+    var textarea = document.getElementById("sapOutput");
+
+    if (!textarea.value.replace(/^\s+|\s+$/g, "")) {
+      alert("Agrega cantidades en los materiales antes de copiar.");
+      return;
+    }
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(textarea.value)
+        .then(function () {
+          alert("Informacion copiada. Puedes pegarla directamente en Excel o SAP.");
+        })
+        .catch(function () {
+          copiarConRespaldo(textarea);
+        });
+      return;
+    }
+
+    copiarConRespaldo(textarea);
+  }
+
+  function enviarWhatsApp() {
+    var texto = document.getElementById("sapOutput").value.replace(/^\s+|\s+$/g, "");
+    var encabezado;
+    var mensaje;
+    var numero;
+    var url;
+
+    if (!texto) {
+      alert("No hay datos para enviar.");
+      return;
+    }
+
+    encabezado = "CODIGO\tCANTIDAD\tEQUIPO\n";
+    mensaje = encabezado + texto;
+    numero = "56995320821";
+    url = "https://wa.me/" + numero + "?text=" + encodeURIComponent(mensaje);
+
+    window.open(url, "_blank");
+  }
+
+  function iniciar() {
+    var inputs = document.querySelectorAll(".qty-input");
+    var i;
+
+    document.getElementById("equipo").oninput = actualizarSAP;
+    document.getElementById("btnCopiar").onclick = copiarAlPortapapeles;
+    document.getElementById("btnWhatsapp").onclick = enviarWhatsApp;
+
+    for (i = 0; i < inputs.length; i++) {
+      inputs[i].oninput = actualizarSAP;
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", iniciar);
+  } else {
+    iniciar();
+  }
+</script>
+
+</body>
+</html>
