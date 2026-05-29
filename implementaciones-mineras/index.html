@@ -246,7 +246,7 @@ const implementaciones = [
   {
     nombre: "Implementación cinta reflectante",
     items: [
-      { cod: "ADH000219", nom: "Rollo cinta reflectante verde limón", qty: null, step: 45, hint: "Ingresar múltiplos de 45" }
+      { cod: "ADH000219", nom: "Rollo cinta reflectante verde limón", qty: null, multiplier: 45, hint: "Ingresa rollos: 1 = 45, 2 = 90, 3 = 135" }
     ]
   },
   {
@@ -395,8 +395,8 @@ function crearFormulario() {
       const row = document.createElement("div");
       row.className = "item-row";
       const defaultValue = item.qty !== null ? item.qty : "";
-      const placeholder = item.step ? `Múltiplos de ${item.step}` : "Cant.";
-      const step = item.step ? item.step : 1;
+      const placeholder = item.multiplier ? "Rollos" : "Cant.";
+      const step = 1;
 
       row.innerHTML = `
         <span class="code">${item.cod}</span>
@@ -466,14 +466,13 @@ function generarSalida(mostrarAlerta = false) {
 
     grupo.items.forEach((item, iIndex) => {
       const input = document.querySelector(`.qty-input[data-group="${gIndex}"][data-index="${iIndex}"]`);
-      const cantidad = Number(input.value);
+      const cantidadIngresada = Number(input.value);
 
-      if (!cantidad || cantidad <= 0) return;
+      if (!cantidadIngresada || cantidadIngresada <= 0) return;
 
-      if (item.step && cantidad % item.step !== 0) {
-        errores.push(`${item.nom}: la cantidad debe ser múltiplo de ${item.step}.`);
-        return;
-      }
+      const cantidad = item.multiplier
+        ? cantidadIngresada * item.multiplier
+        : cantidadIngresada;
 
       const codigo = item.cod.trim();
 
@@ -487,7 +486,12 @@ function generarSalida(mostrarAlerta = false) {
 
       const registro = consolidado.get(codigo);
       registro.cantidad += cantidad;
-      registro.detalles.push(`${grupo.nombre} - ${item.nom} (${cantidad})`);
+
+      if (item.multiplier) {
+        registro.detalles.push(`${grupo.nombre} - ${item.nom} (${cantidadIngresada} x ${item.multiplier} = ${cantidad})`);
+      } else {
+        registro.detalles.push(`${grupo.nombre} - ${item.nom} (${cantidad})`);
+      }
     });
   });
 
