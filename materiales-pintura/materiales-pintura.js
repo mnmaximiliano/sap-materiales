@@ -265,22 +265,22 @@ function createItemRow(item) {
   title.textContent = item.name;
   nameBlock.appendChild(title);
 
-  const meta = document.createElement("div");
-  meta.className = "item-meta";
+  //const meta = document.createElement("div");
+  //meta.className = "item-meta";
 
-  const baseBadge = document.createElement("span");
-  baseBadge.className = "badge badge-neutral";
-  baseBadge.textContent = "Codigo SAP";
-  meta.appendChild(baseBadge);
+  //const baseBadge = document.createElement("span");
+  //baseBadge.className = "badge badge-neutral";
+  //baseBadge.textContent = "Codigo SAP";
+  //meta.appendChild(baseBadge);
 
-  if (isWegMaterial(item)) {
-    const wegBadge = document.createElement("span");
-    wegBadge.className = "badge badge-weg";
-    wegBadge.textContent = `Salida x ${formatQuantity(WEG_MULTIPLIER)}`;
-    meta.appendChild(wegBadge);
-  }
+  //if (isWegMaterial(item)) {
+    //const wegBadge = document.createElement("span");
+    //wegBadge.className = "badge badge-weg";
+    //wegBadge.textContent = `Salida x ${formatQuantity(WEG_MULTIPLIER)}`;
+    //meta.appendChild(wegBadge);
+  //}
 
-  nameBlock.appendChild(meta);
+  //nameBlock.appendChild(meta);
 
   const qtyField = document.createElement("div");
   qtyField.className = "qty-field";
@@ -309,13 +309,13 @@ function createItemRow(item) {
     updateOutput();
   });
 
-  const help = document.createElement("p");
-  help.className = "qty-help";
-  help.textContent = isWegMaterial(item)
-    ? `Ingresa unidades. Salida: cantidad x ${formatQuantity(WEG_MULTIPLIER)}`
-    : "Ingresa la cantidad requerida";
+//  const help = document.createElement("p");
+//  help.className = "qty-help";
+  //help.textContent = isWegMaterial(item)
+    //? `Ingresa unidades. Salida: cantidad x ${formatQuantity(WEG_MULTIPLIER)}`
+   // : "Ingresa la cantidad requerida";
 
-  qtyField.append(input, help);
+  qtyField.append(input);
   row.append(code, nameBlock, qtyField);
 
   return row;
@@ -343,11 +343,8 @@ function createCategorySection(category) {
   titleText.className = "category-title-text";
   titleText.textContent = category.name;
 
-  const subtitle = document.createElement("span");
-  subtitle.className = "category-subtitle";
-  subtitle.textContent = `${category.visibleItems.length} materiales visibles`;
 
-  titleBlock.append(titleText, subtitle);
+  titleBlock.append(titleText);
 
   const icon = document.createElement("span");
   icon.className = "category-toggle-icon";
