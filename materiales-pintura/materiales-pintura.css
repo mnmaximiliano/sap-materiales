@@ -106,6 +106,7 @@ label {
 input[type="text"],
 input[type="search"],
 input[type="tel"],
+select,
 .qty-input,
 textarea {
   width: 100%;
@@ -119,6 +120,7 @@ textarea {
 input[type="text"]:focus,
 input[type="search"]:focus,
 input[type="tel"]:focus,
+select:focus,
 .qty-input:focus,
 textarea:focus,
 .category-toggle:focus-visible,
