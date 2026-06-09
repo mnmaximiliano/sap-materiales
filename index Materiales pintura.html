@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carga de Materiales para SAP</title>
+  <link rel="stylesheet" href="materiales-pintura.css">
+</head>
+<body>
+  <main class="page">
+    <section class="card main-card" aria-labelledby="page-title">
+      <header class="page-header">
+        <div>
+          <p class="eyebrow">Pintura y consumibles</p>
+          <h1 id="page-title">Solicitud de Materiales para SAP</h1>
+          <p class="intro">
+            Busca materiales por codigo o nombre, carga cantidades y genera la salida lista para Excel, SAP o WhatsApp.
+          </p>
+        </div>
+      </header>
+
+      <section class="toolbar" aria-label="Controles principales">
+        <div class="field-group">
+          <label for="equipo">Numero interno del equipo</label>
+          <input type="text" id="equipo" placeholder="Ej: JLG-1250, BR-800, MAN-02" autocomplete="off">
+          <p class="help-text">Opcional. Si no lo indicas, la salida se genera igualmente.</p>
+        </div>
+
+        <div class="field-group">
+          <label for="searchInput">Buscar material</label>
+          <input
+            type="search"
+            id="searchInput"
+            placeholder="Busca por codigo o nombre"
+            autocomplete="off"
+            aria-describedby="searchHelp">
+          <p class="help-text" id="searchHelp">Las categorias con coincidencias se despliegan automaticamente.</p>
+        </div>
+
+        <div class="field-group">
+          <label for="whatsappNumber">Numero de WhatsApp</label>
+          <input
+            type="tel"
+            id="whatsappNumber"
+            inputmode="tel"
+            placeholder="56995320821"
+            aria-describedby="whatsappHelp">
+          <p class="help-text" id="whatsappHelp">
+            Recomendado: dejarlo configurable para no depender de un numero fijo en el codigo.
+          </p>
+        </div>
+      </section>
+
+      <div class="status-row" aria-live="polite">
+        <p class="status-note" id="statusNote">
+          Los materiales con nombre terminado en WEG convierten la cantidad ingresada a multiplos de 3.6 en la salida.
+        </p>
+        <p class="result-count" id="resultCount">0 materiales visibles</p>
+      </div>
+
+      <section class="layout">
+        <div class="materials-panel">
+          <div id="lista-materiales" class="materials-list" aria-live="polite"></div>
+          <p id="emptyState" class="empty-state" hidden>No hay materiales que coincidan con el filtro.</p>
+        </div>
+
+        <aside class="card side-card" aria-labelledby="output-title">
+          <h2 id="output-title">Salida para SAP / Excel</h2>
+          <p class="help-text">
+            Formato: Codigo [Tab] Cantidad [Tab] Equipo.
+          </p>
+
+          <div class="summary-grid" aria-label="Resumen">
+            <div class="summary-item">
+              <span class="summary-label">Items cargados</span>
+              <strong id="selectedCount">0</strong>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Items WEG</span>
+              <strong id="wegCount">0</strong>
+            </div>
+          </div>
+
+          <label for="sapOutput" class="sr-only">Salida de materiales</label>
+          <textarea
+            id="sapOutput"
+            readonly
+            spellcheck="false"
+            placeholder="Ingresa cantidades en la lista para generar la salida."></textarea>
+
+          <p id="feedbackMessage" class="feedback-message" aria-live="polite"></p>
+
+          <div class="button-group">
+            <button class="btn btn-secondary" id="btnLimpiar" type="button">Limpiar cantidades</button>
+            <button class="btn btn-primary" id="btnCopiar" type="button">Copiar al portapapeles</button>
+            <button class="btn btn-whatsapp" id="btnWhatsapp" type="button">Enviar a WhatsApp</button>
+          </div>
+        </aside>
+      </section>
+    </section>
+  </main>
+
+  <script src="materiales-pintura.js"></script>
+</body>
+</html>
