@@ -254,12 +254,9 @@ function toggleGrupo(gIndex, activo) {
 
 function obtenerDatosGenerales() {
   return {
-    cliente: document.getElementById("cliente").value.trim(),
-    faena: document.getElementById("faena").value.trim(),
     equipo: document.getElementById("equipo").value.trim(),
     om: document.getElementById("om").value.trim(),
     solicitante: document.getElementById("solicitante").value.trim(),
-    observacion: document.getElementById("observacion").value.trim()
   };
 }
 
