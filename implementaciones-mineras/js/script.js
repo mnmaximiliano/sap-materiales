@@ -304,12 +304,12 @@ function generarSalida(mostrarAlerta = false) {
     alert(errores.join("\n"));
   }
 
-  let texto = "CODIGO\tCANTIDAD\tEQUIPO\tCLIENTE\tFAENA\tOM_SD\tSOLICITANTE\tDETALLE\tOBSERVACION\n";
+  let texto = "CODIGO\tCANTIDAD\tEQUIPO\tOM_SD\tSOLICITANTE\tDETALLE\n";
 
   const filas = Array.from(consolidado.values()).sort((a, b) => a.codigo.localeCompare(b.codigo));
 
   filas.forEach(reg => {
-    texto += `${reg.codigo}\t${reg.cantidad}\t${datos.equipo}\t${datos.cliente}\t${datos.faena}\t${datos.om}\t${datos.solicitante}\t${reg.detalles.join(" | ")}\t${datos.observacion}\n`;
+    texto += `${reg.codigo}\t${reg.cantidad}\t${datos.equipo}\t${datos.om}\t${datos.solicitante}\t${reg.detalles.join(" | ")}\n`;
   });
 
   document.getElementById("salida").value = filas.length > 0 ? texto : "";
