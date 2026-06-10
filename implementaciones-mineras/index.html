@@ -14,19 +14,11 @@
 
     <div class="grid-info">
       <div>
-        <label for="cliente">Cliente</label>
-        <input type="text" id="cliente" placeholder="Ej: MEL, CEIM, FCAB" oninput="generarSalida()">
-      </div>
-      <div>
-        <label for="faena">Faena / Minera</label>
-        <input type="text" id="faena" placeholder="Ej: Minera Escondida" oninput="generarSalida()">
-      </div>
-      <div>
         <label for="equipo">Equipo / Número interno *</label>
         <input type="text" id="equipo" placeholder="Ej: BAP-0314" oninput="generarSalida()">
       </div>
       <div>
-        <label for="om">OM / SD / Reserva</label>
+        <label for="om">OM</label>
         <input type="text" id="om" placeholder="Ej: OM 79766" oninput="generarSalida()">
       </div>
       <div>
@@ -39,10 +31,6 @@
           <option value="56995320821">Maximiliano Matamala</option>
           <option value="56966588858">Alejandro Araya</option>
         </select>
-      </div>
-      <div>
-        <label for="observacion">Observación general</label>
-        <input type="text" id="observacion" placeholder="Ej: Implementación solicitada por cliente" oninput="generarSalida()">
       </div>
     </div>
 
@@ -57,9 +45,8 @@
       </p>
       <div id="contadorMateriales" class="counter">Materiales seleccionados: 0</div>
       <textarea id="salida" readonly placeholder="Selecciona una implementación y completa cantidades..."></textarea>
-      <button class="btn btn-generate" onclick="generarSalida(true)">Generar salida</button>
       <button class="btn btn-copy" onclick="copiarSalida()">Copiar al portapapeles</button>
-      <button class="btn btn-copy" onclick="descargarTSV()">Descargar TSV</button>
+
       <button class="btn btn-wa" onclick="enviarWhatsApp()">Enviar a mi WhatsApp</button>
       <button class="btn btn-clear" onclick="limpiarFormulario()">Limpiar formulario</button>
     </div>
