@@ -101,7 +101,8 @@ const MATERIAL_CATEGORIES = [
     items: [
       { code: "HER000356", name: "(N) BROCHA DE 2" },
       { code: "ADH000219", name: "(N) CINTA REFLECTANTE VERDE LIMON POR METROS (HERR)" },
-      { code: "PIN000008", name: "(N) COLADOR DE PAPEL" },
+      { code: "PIN000006", name: "(N) COLADOR DE PAPEL" },
+      { code: "PIN000008", name: "(N) ENDURECEDOR" },
       { code: "PIN000024", name: "(N) FIBRA DE VIDRIO 1/2 KG" },
       { code: "PIN000203", name: "(N) PANO DE LIMPIEZA" },
       { code: "PIN000034", name: "(N) PERMACEL ROLLO 1\"" },
