@@ -125,6 +125,7 @@ const implementaciones = [
       { cod: "LOGALO0191", nom: "Logo parada de emergencia", qty: null },
       { cod: "LOGALO0193", nom: "Logo pértiga", qty: null },
       { cod: "LOGALO0184", nom: "Logo petróleo", qty: null },
+      { cod: "LOGALO0183", nom: "Logo porta cuña", qty: null },
       { cod: "LOGALO0206", nom: "Logo prohibido uso de celular", qty: null },
       { cod: "LOGALO0197", nom: "Logo punto de bloqueo", qty: null },
       { cod: "LOGALO0194", nom: "Logo TARA", qty: null },
@@ -137,7 +138,9 @@ const implementaciones = [
   {
     nombre: "Implementación cuñas y portacuñas",
     items: [
+      { cod: "MEC000832", nom: "Cuña 05 toneladas (un)", qty: null },
       { cod: "HER000018", nom: "Cuña 20 toneladas (un)", qty: null },
+      { cod: "MEC001851", nom: "Portacuña 05 toneladas (un)", qty: null },
       { cod: "MEC000237", nom: "Portacuña 20 toneladas (un)", qty: null }
     ]
   },
