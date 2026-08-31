@@ -80,6 +80,7 @@ const implementaciones = [
       { cod: "MEC001326", nom: "Checkpoint 30 mm", qty: null },
       { cod: "MEC001616", nom: "Checkpoint 32 mm", qty: null },
       { cod: "MEC001327", nom: "Checkpoint 33 mm", qty: null },
+      { cod: "MEC001540", nom: "Checkpoint 34 mm", qty: null },
       { cod: "MEC000816", nom: "Checkpoint 38 mm", qty: null },
       { cod: "MEC000757", nom: "Checkpoint 41 mm", qty: null },
       { cod: "MEC001320", nom: "Checkpoint para medidas sin código creado", qty: null }
@@ -91,7 +92,6 @@ const implementaciones = [
       { cod: "ELE000775", nom: "Pértiga completa de 8 pies", qty: null },
       { cod: "ELE002499", nom: "Pértiga de 10 pies", qty: null },
       { cod: "ELE002909", nom: "Pértiga de 12 pies", qty: null },
-      { cod: "ELE000080", nom: "Baliza ámbar", qty: 1 },
       { cod: "ELE002609", nom: "Cable de 2 vías", qty: 4 },
       { cod: "ELE002584", nom: "Base Adhesiva", qty: 10 },
       { cod: "ELE000848", nom: "Terminales paleta macho", qty: 4 },
